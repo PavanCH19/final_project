@@ -1,0 +1,23 @@
+{
+  "name": "msg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@chainsafe/libp2p-noise": "^16.1.0",
+    "@chainsafe/libp2p-yamux": "^7.0.1",
+    "@libp2p/mdns": "^11.0.32",
+    "@libp2p/tcp": "^10.1.8",
+    "@libp2p/websockets": "^9.2.8",
+    "@nodeutils/defaults-deep": "^1.1.0",
+    "libp2p": "^2.8.2",
+    "nodemon": "^3.1.9"
+  }
+}
