@@ -30,9 +30,11 @@ const HeroSection = () => {
               Start Free Practice →
             </Button>
           </Link>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-6 rounded-full transition-all duration-300">
-            Watch Demo
-          </Button>
+          <Link to="/dashboard">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-6 rounded-full transition-all duration-300">
+              Dashboard
+            </Button>
+          </Link>
         </div>
         
         <div className="mt-12 flex items-center justify-center gap-8 text-white/80">
