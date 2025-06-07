@@ -23,6 +23,7 @@ const TemplateBuilder = ({ template, onBack, onSave }) => {
         questions: template?.questions || []
     });
 
+
     const domains = ['Technology', 'Business', 'Finance', 'Healthcare', 'Education', 'Marketing', 'Design'];
     const companies = ['Google', 'Meta', 'Microsoft', 'Amazon', 'Apple', 'Netflix', 'Tesla', 'Spotify', 'Uber'];
     const roles = ['Software Engineer', 'Product Manager', 'Data Scientist', 'Designer', 'Marketing Manager', 'Sales Representative'];
