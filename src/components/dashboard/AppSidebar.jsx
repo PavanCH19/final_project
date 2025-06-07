@@ -19,45 +19,34 @@ import {
   PersonStanding
 } from "lucide-react";
 
-const menuItems = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: LayoutDashboard,
-    isActive: true,
-  },
-  {
-    title: "Interview Sessions",
-    url: "/mock-interview",
-    icon: MessageSquare,
-  },
-  {
-    title: "Recommendations",
-    url: "/recommendations",
-    icon: Star,
-  },
-  {
-    title: "Feedback",
-    url: "/feedback",
-    icon: FileText,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings,
-  },
-  {
-    title: "admin",
-    url: "/admin",
-    icon: PersonStanding,
-  },
-  {
-    title: "schedule",
-    url: "/schedule",
-    icon: PersonStanding,
-  },
-
-];
+// const menuItems = [
+//   {
+//     title: "Dashboard",
+//     url: "/dashboard",
+//     icon: LayoutDashboard,
+//     isActive: true,
+//   },
+//   {
+//     title: "Interview Sessions",
+//     url: "/mock-interview",
+//     icon: MessageSquare,
+//   },
+//   {
+//     title: "Recommendations",
+//     url: "/recommendations",
+//     icon: Star,
+//   },
+//   {
+//     title: "Feedback",
+//     url: "/feedback",
+//     icon: FileText,
+//   },
+//   {
+//     title: "Settings",
+//     url: "/settings",
+//     icon: Settings,
+//   },
+// ];
 
 export function AppSidebar() {
   return (

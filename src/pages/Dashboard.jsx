@@ -1,10 +1,11 @@
-import React from 'react';
-import { Card, CardContent } from "../components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Progress } from "../components/ui/progress";
 import { Badge } from "../components/ui/badge";
-import { MessageSquare, FileText, Star } from 'lucide-react';
+import { MessageSquare, FileText, Star, Code, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import TemplateBuilder from '../pages/TemplateBuilder';
 
 const Dashboard = () => {
   const userProfile = {
@@ -38,7 +39,7 @@ const Dashboard = () => {
       {/* Profile Summary */}
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-6">📋 Profile Summary</h2>
-        
+
         {/* Technical Skills */}
         <div className="space-y-4 mb-6">
           <h3 className="font-medium">Technical Skills</h3>
@@ -126,7 +127,7 @@ const Dashboard = () => {
       {/* Interview Readiness */}
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-6">Interview Readiness</h2>
-        
+
         {/* Overall Score */}
         <div className="text-center mb-8">
           <div className="text-4xl font-bold text-orange-500">{userProfile.readinessScores.overall}%</div>
@@ -164,6 +165,58 @@ const Dashboard = () => {
           Complete 2 more mock interviews to reach 85% readiness!
         </p>
       </Card>
+      <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <Card className="group hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <Code className="h-8 w-8 text-primary" />
+              <div>
+                <CardTitle>Coding Environment</CardTitle>
+                <CardDescription>
+                  Practice coding challenges with real-time execution and testing
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              Sharpen your coding skills with our interactive editor, complete with
+              syntax highlighting, console output, and comprehensive test cases.
+            </p>
+            <Link to="/dashboard/coding-environment">
+              <Button className="w-full group-hover:scale-105 transition-transform">
+                Start Coding Practice
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        <Card className="group hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <FileText className="h-8 w-8 text-primary" />
+              <div>
+                <CardTitle>Resume Builder</CardTitle>
+                <CardDescription>
+                  Create and optimize your resume with AI-powered suggestions
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              Build professional resumes with step-by-step guidance, real-time scoring,
+              and keyword optimization for better job application success.
+            </p>
+            <Link to="/dashboard/resume-builder">
+              <Button className="w-full group-hover:scale-105 transition-transform">
+                Build Resume
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+
     </div>
   );
 };
