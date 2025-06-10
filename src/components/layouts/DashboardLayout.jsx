@@ -21,7 +21,8 @@ const mainNavLinks = [
   { path: '/dashboard/mock-interview', icon: <MessageSquare className="w-5 h-5" />, label: 'Interview Sessions' },
   { path: '/dashboard/template-builder', icon: <Star className="w-5 h-5" />, label: 'Template builder' },
   { path: '/dashboard/feedback', icon: <FileText className="w-5 h-5" />, label: 'Feedback' },
-  { path: '/dashboard/settings', icon: <Settings className="w-5 h-5" />, label: 'Settings' }
+  { path: '/dashboard/settings', icon: <Settings className="w-5 h-5" />, label: 'Settings' },
+  { path: 'dashboard/init', icon: <Users className="w-5 h-5" />, label: 'Init' },
 ];
 
 const additionalLinks = [
@@ -32,7 +33,9 @@ const additionalLinks = [
   { path: '/dashboard/interview-simulation', icon: <Users className="w-5 h-5" />, label: 'Interview Simulation' },
   { path: '/dashboard/learning-dashboard', icon: <Users className="w-5 h-5" />, label: 'Learning Dashboard' },
   { path: '/dashboard/coding-environment', icon: <Users className="w-5 h-5" />, label: 'Coding Environment' },
-  { path: '/dashboard/resume-builder', icon: <Users className="w-5 h-5" />, label: 'Resume builder' }
+  { path: '/dashboard/resume-builder', icon: <Users className="w-5 h-5" />, label: 'Resume builder' },
+  { path: '/dashboard/resume-uploader', icon: <Users className="w-5 h-5" />, label: 'Resume uploader' },
+  { path: '/dashboard/offline-settings', icon: <Users className="w-5 h-5" />, label: 'Offline Settings' }
 ];
 
 const DashboardLayout = () => {
