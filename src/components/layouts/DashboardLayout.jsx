@@ -15,6 +15,18 @@ import {
 } from 'lucide-react';
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarHeader,
+  SidebarProvider
+} from "@/components/ui/sidebar";
 
 const mainNavLinks = [
   { path: '/dashboard', icon: <LayoutDashboard className="w-5 h-5" />, label: 'Dashboard' },
@@ -22,7 +34,6 @@ const mainNavLinks = [
   { path: '/dashboard/template-builder', icon: <Star className="w-5 h-5" />, label: 'Template builder' },
   { path: '/dashboard/feedback', icon: <FileText className="w-5 h-5" />, label: 'Feedback' },
   { path: '/dashboard/settings', icon: <Settings className="w-5 h-5" />, label: 'Settings' },
-  { path: 'dashboard/init', icon: <Users className="w-5 h-5" />, label: 'Init' },
 ];
 
 const additionalLinks = [
@@ -42,99 +53,72 @@ const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside
-        className={cn(
-          "bg-white shadow-md transition-all duration-300 fixed h-full z-30",
-          isSidebarOpen ? "w-64" : "w-16"
-        )}
-      >
-        <div className="flex items-center justify-between p-4 border-b">
-          {isSidebarOpen && (
-            <div>
-              <h1 className="text-xl font-bold">InterviewAce</h1>
-              <p className="text-xs text-gray-500">Smart Prep Platform</p>
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen flex w-full bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <Sidebar>
+          <SidebarHeader className="p-4">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-8 w-8">
+                <AvatarImage src="/placeholder.svg" alt="InterviewAce" />
+                <AvatarFallback className="bg-blue-600 text-white text-sm">IA</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">InterviewAce</span>
+                <span className="text-xs text-muted-foreground">Smart Prep Platform</span>
+              </div>
             </div>
-          )}
-          <button
-            onClick={toggleSidebar}
-            className="p-2 rounded-lg hover:bg-gray-100"
-          >
-            {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
+          </SidebarHeader>
 
-        {/* Main Navigation */}
-        <div className="p-4">
-          <div className="text-sm font-medium text-gray-500 mb-2">
-            {isSidebarOpen && "Navigation"}
-          </div>
-          <nav className="space-y-1">
-            {mainNavLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-              >
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    "w-full flex items-center gap-3 justify-start",
-                    location.pathname === link.path
-                      ? "bg-gray-100 text-primary"
-                      : "hover:bg-gray-100"
-                  )}
-                >
-                  {link.icon}
-                  {isSidebarOpen && <span>{link.label}</span>}
-                </Button>
-              </Link>
-            ))}
-          </nav>
-        </div>
+          <SidebarContent>
+            {/* Main Navigation */}
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarMenu>
+                {mainNavLinks.map((link) => (
+                  <SidebarMenuItem key={link.path}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname === link.path}
+                    >
+                      <Link to={link.path} className="flex items-center gap-3">
+                        {link.icon}
+                        <span>{link.label}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroup>
 
-        {/* Additional Pages */}
-        <div className="p-4 border-t">
-          <div className="text-sm font-medium text-gray-500 mb-2">
-            {isSidebarOpen && "Additional Pages"}
-          </div>
-          <nav className="space-y-1">
-            {additionalLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-              >
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    "w-full flex items-center gap-3 justify-start",
-                    location.pathname === link.path
-                      ? "bg-gray-100 text-primary"
-                      : "hover:bg-gray-100"
-                  )}
-                >
-                  {link.icon}
-                  {isSidebarOpen && <span>{link.label}</span>}
-                </Button>
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </aside>
+            {/* Additional Navigation */}
+            <SidebarGroup>
+              <SidebarGroupLabel>Additional Pages</SidebarGroupLabel>
+              <SidebarMenu>
+                {additionalLinks.map((link) => (
+                  <SidebarMenuItem key={link.path}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname === link.path}
+                    >
+                      <Link to={link.path} className="flex items-center gap-3">
+                        {link.icon}
+                        <span>{link.label}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
 
-      {/* Main Content */}
-      <main
-        className={cn(
-          "flex-1 overflow-auto transition-all duration-300 p-8",
-          isSidebarOpen ? "ml-64" : "ml-16"
-        )}
-      >
-        <Outlet />
-      </main>
-    </div>
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto p-8">
+          <Outlet />
+        </main>
+      </div>
+    </SidebarProvider>
   );
 };
 
