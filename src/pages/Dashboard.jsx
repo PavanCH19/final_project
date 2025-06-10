@@ -6,11 +6,12 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Button } from "@/components/ui/button";
 import { Code, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SidebarPageWrapper} from "@/components/ui/sidebar";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen flex w-full bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <main className="flex-1 p-6 space-y-6">
+    <SidebarPageWrapper noMargin>
+      <div className="space-y-6">
         <DashboardHeader />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
@@ -72,8 +73,8 @@ const Dashboard = () => {
             <ReadinessScore />
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </SidebarPageWrapper>
   );
 };
 

@@ -10,6 +10,7 @@ import ThemeToggle from '@/components/codingEnvironment/ThemeToggle';
 import LanguageSelector from '@/components/codingEnvironment/LanguageSelector';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { SidebarPageWrapper, SidebarTrigger } from "@/components/ui/sidebar";
 
 const CodingEnvironment = () => {
     const navigate = useNavigate();
@@ -32,11 +33,12 @@ const CodingEnvironment = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <SidebarPageWrapper noMargin>
             {/* Header */}
             <header className="border-b bg-card">
                 <div className="flex items-center justify-between p-4">
                     <div className="flex items-center space-x-4">
+                        <SidebarTrigger className="mr-2" />
                         <Button
                             variant="ghost"
                             size="sm"
@@ -96,7 +98,7 @@ const CodingEnvironment = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </SidebarPageWrapper>
     );
 };
 

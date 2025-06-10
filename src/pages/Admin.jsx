@@ -9,6 +9,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../components
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, PieChart, Pie, Cell, LineChart, Line, ResponsiveContainer } from 'recharts';
 import { Users, FileText, MessageSquare, BarChart3, Settings, Search, Filter, Plus, Edit, Trash2, AlertCircle, TrendingUp, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SidebarTrigger } from "../components/ui/sidebar";
 
 const Admin = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -76,6 +77,7 @@ const Admin = () => {
             <header className="bg-white shadow-sm border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
+                        <SidebarTrigger />
                         <div className="flex items-center">
                             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
                         </div>

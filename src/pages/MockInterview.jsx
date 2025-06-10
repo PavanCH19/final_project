@@ -4,6 +4,7 @@ import { QuestionDisplay } from "@/components/interview/QuestionDisplay";
 import { VoiceRecorder } from "@/components/interview/VoiceRecorder";
 import { ProgressTracker } from "@/components/interview/ProgressTracker";
 import { InterviewControls } from "@/components/interview/InterviewControls";
+import { SidebarPageWrapper, SidebarTrigger } from "@/components/ui/sidebar";
 
 const mockQuestions = [
   {
@@ -114,42 +115,41 @@ const MockInterview = () => {
   };
 
   return (
-    <div className="min-h-screen flex w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <main className="flex-1 p-4 md:p-6 lg:p-8">
-        <div className="w-full lg:w-[calc(100%-2rem)] max-w-[1000px] mx-auto space-y-4 md:space-y-6">
-          <InterviewHeader 
-            domain={sessionData.domain}
-            company={sessionData.company}
-          />
-          
-          <ProgressTracker 
-            currentQuestion={currentQuestionIndex + 1}
-            totalQuestions={sessionData.totalQuestions}
-            difficulty={currentQuestion.difficulty}
-          />
+    <SidebarPageWrapper noMargin>
+      <div className="w-full lg:w-[calc(100%-2rem)] max-w-[1000px] mx-auto space-y-4 md:space-y-6">
+        <SidebarTrigger />
+        <InterviewHeader 
+          domain={sessionData.domain}
+          company={sessionData.company}
+        />
+        
+        <ProgressTracker 
+          currentQuestion={currentQuestionIndex + 1}
+          totalQuestions={sessionData.totalQuestions}
+          difficulty={currentQuestion.difficulty}
+        />
 
-          <QuestionDisplay 
-            question={currentQuestion.text}
-            questionNumber={currentQuestionIndex + 1}
-            difficulty={currentQuestion.difficulty}
-          />
+        <QuestionDisplay 
+          question={currentQuestion.text}
+          questionNumber={currentQuestionIndex + 1}
+          difficulty={currentQuestion.difficulty}
+        />
 
-          <VoiceRecorder 
-            isRecording={isRecording}
-            recordingTime={recordingTime}
-            onToggleRecording={handleToggleRecording}
-          />
+        <VoiceRecorder 
+          isRecording={isRecording}
+          recordingTime={recordingTime}
+          onToggleRecording={handleToggleRecording}
+        />
 
-          <InterviewControls 
-            onNextQuestion={handleNextQuestion}
-            onSkipQuestion={handleSkipQuestion}
-            onHint={handleHint}
-            isLastQuestion={currentQuestionIndex === mockQuestions.length - 1}
-            canProceed={!isRecording}
-          />
-        </div>
-      </main>
-    </div>
+        <InterviewControls 
+          onNextQuestion={handleNextQuestion}
+          onSkipQuestion={handleSkipQuestion}
+          onHint={handleHint}
+          isLastQuestion={currentQuestionIndex === mockQuestions.length - 1}
+          canProceed={!isRecording}
+        />
+      </div>
+    </SidebarPageWrapper>
   );
 };
 

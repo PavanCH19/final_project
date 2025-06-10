@@ -608,6 +608,31 @@ const SidebarMenuSubButton = React.forwardRef(
 )
 SidebarMenuSubButton.displayName = "SidebarMenuSubButton"
 
+const SidebarPageWrapper = React.forwardRef(({ children, className, noMargin = false, ...props }, ref) => {
+  const { state } = useSidebar();
+  
+  return (
+    <div 
+      ref={ref}
+      className={cn(
+        "min-h-screen flex w-full bg-gradient-to-br from-blue-50 via-white to-purple-50",
+        className
+      )}
+      {...props}
+    >
+      <main 
+        className={cn(
+          "flex-1 p-6 transition-all duration-300",
+          !noMargin && state === "expanded" ? "md:ml-[18rem]" : !noMargin && "md:ml-16"
+        )}
+      >
+        {children}
+      </main>
+    </div>
+  );
+});
+SidebarPageWrapper.displayName = "SidebarPageWrapper";
+
 export {
   Sidebar,
   SidebarContent,
@@ -630,4 +655,5 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
+  SidebarPageWrapper
 }

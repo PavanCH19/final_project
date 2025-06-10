@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import VideoRecorder from '@/components/interview/VideoRecorder';
 import PlaybackPanel from '@/components/interview/PlaybackPanel';
 import InterviewTips from '@/components/interview/InterviewTips';
+import { SidebarPageWrapper } from "@/components/ui/sidebar";
 
 const InterviewSimulation = () => {
     const navigate = useNavigate();
@@ -45,65 +46,67 @@ const InterviewSimulation = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            <div className="container mx-auto px-4 py-6">
-                {/* Header */}
-                <div className="flex justify-between items-center mb-6">
-                    <div>
-                        <h1 className="text-2xl font-bold mb-1">Interview Simulation</h1>
-                        <p className="text-muted-foreground">Practice and perfect your interview responses</p>
+        <SidebarPageWrapper>
+            <div className="min-h-screen bg-background">
+                <div className="container mx-auto px-4 py-6">
+                    {/* Header */}
+                    <div className="flex justify-between items-center mb-6">
+                        <div>
+                            <h1 className="text-2xl font-bold mb-1">Interview Simulation</h1>
+                            <p className="text-muted-foreground">Practice and perfect your interview responses</p>
+                        </div>
+                        <Button variant="outline" onClick={() => navigate('/')}>
+                            Back to Dashboard
+                        </Button>
                     </div>
-                    <Button variant="outline" onClick={() => navigate('/')}>
-                        Back to Dashboard
-                    </Button>
-                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    {/* Main Video Recording Area */}
-                    <div className="lg:col-span-3">
-                        {/* Current Question */}
-                        <Card className="mb-6">
-                            <CardHeader>
-                                <div className="flex items-center justify-between">
-                                    <CardTitle className="text-lg">Current Question</CardTitle>
-                                    <Badge variant="secondary">Frontend Development</Badge>
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        {/* Main Video Recording Area */}
+                        <div className="lg:col-span-3">
+                            {/* Current Question */}
+                            <Card className="mb-6">
+                                <CardHeader>
+                                    <div className="flex items-center justify-between">
+                                        <CardTitle className="text-lg">Current Question</CardTitle>
+                                        <Badge variant="secondary">Frontend Development</Badge>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-lg">{currentQuestion}</p>
+                                </CardContent>
+                            </Card>
+
+                            {/* Video Recorder */}
+                            <VideoRecorder
+                                isRecording={isRecording}
+                                isPaused={isPaused}
+                                recordingTime={recordingTime}
+                                onStartRecording={handleStartRecording}
+                                onPauseRecording={handlePauseRecording}
+                                onStopRecording={handleStopRecording}
+                                setRecordingTime={setRecordingTime}
+                            />
+
+                            {/* Playback Panel */}
+                            {recordedVideo && (
+                                <div className="mt-6">
+                                    <PlaybackPanel
+                                        videoUrl={recordedVideo}
+                                        onSave={handleSaveVideo}
+                                        onShare={handleShareVideo}
+                                    />
                                 </div>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-lg">{currentQuestion}</p>
-                            </CardContent>
-                        </Card>
+                            )}
+                        </div>
 
-                        {/* Video Recorder */}
-                        <VideoRecorder
-                            isRecording={isRecording}
-                            isPaused={isPaused}
-                            recordingTime={recordingTime}
-                            onStartRecording={handleStartRecording}
-                            onPauseRecording={handlePauseRecording}
-                            onStopRecording={handleStopRecording}
-                            setRecordingTime={setRecordingTime}
-                        />
-
-                        {/* Playback Panel */}
-                        {recordedVideo && (
-                            <div className="mt-6">
-                                <PlaybackPanel
-                                    videoUrl={recordedVideo}
-                                    onSave={handleSaveVideo}
-                                    onShare={handleShareVideo}
-                                />
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Tips Sidebar */}
-                    <div className="lg:col-span-1">
-                        <InterviewTips />
+                        {/* Tips Sidebar */}
+                        <div className="lg:col-span-1">
+                            <InterviewTips />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </SidebarPageWrapper>
     );
 };
 
